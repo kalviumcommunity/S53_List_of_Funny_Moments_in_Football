@@ -1,1 +1,1 @@
-this is the readme file
+The idea of my project is list of funny moments in football
