@@ -16,16 +16,16 @@ Get ready to laugh your socks off at the silliest side of the beautiful game! Bu
 
 3.**Generate Memes**: Generate memes on your  own creativity
 
-## Contributing to Goal-Den Gaffes ##: 
+## Contributing to Goal-Den Gaffes: 
 Here are ways you can contribute to Goal-Den Gaffes, whether you're a tech whiz or a comedy connoisseur:
 
-### For all users:###
+### For all users:
 
 Submit your own funny tech fails! We're always on the lookout for hilarious clips and moments. If you see something side-splitting online, share it with us (with proper respect for copyright, of course).
 Become a laughing champion! Vote for your favorite fails, create hilarious captions and memes, and share your reactions in the comments. Your laughter fuels the fun!
 Spread the word! Tell your friends about Goal-Den Gaffes and invite them to join the community. The more the merrier (and the funnier)!
 
-### For developers:###
+### For developers:
 
 Join the tech team! We're always looking for talented developers to help build and improve the platform. You can contribute to the website, mobile app, or backend infrastructure.
 Check out the GitHub repo. All our code is open-source and available on GitHub. You can find technical documentation, issue reports, and contribution guidelines there.
