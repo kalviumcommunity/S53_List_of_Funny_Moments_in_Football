@@ -1,1 +1,1 @@
-The idea of my project is list of funny moments in  football  
+The idea of my ASAP project is list of funny moments in football.  
