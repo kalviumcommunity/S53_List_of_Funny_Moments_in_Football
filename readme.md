@@ -31,3 +31,8 @@ Join the tech team! We're always looking for talented developers to help build a
 Check out the GitHub repo. All our code is open-source and available on GitHub. You can find technical documentation, issue reports, and contribution guidelines there.
 Get started with the tech stack. We use [list of technologies used in the project]. Having some familiarity with these technologies will be helpful.
 Communicate and collaborate! Join our developer community (forum, chat group, etc.) to discuss ideas, ask questions, and share progress.
+
+
+## Deployed Link
+
+https://goal-den-gaffes.onrender.com
