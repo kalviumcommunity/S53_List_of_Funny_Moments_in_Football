@@ -1,0 +1,23 @@
+{
+  "name": "s53_list_of_funny_moments_in_football",
+  "version": "1.0.0",
+  "description": "Get ready to laugh your socks off at the silliest side of the beautiful game! Buckle up for epic fails, quirky moments, and unexpected animal guests that will have you rolling on the floor (figuratively, of course!).",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Sharugeshwaran",
+  "license": "ISC",
+  "keywords": [
+    "Football",
+    "Football Feild",
+    "Fails",
+    "Funny Moments"
+  ],
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1",
+    "dotenv": "^16.4.1"
+  }
+}
