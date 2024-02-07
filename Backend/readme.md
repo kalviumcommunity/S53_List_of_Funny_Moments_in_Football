@@ -1,3 +1,4 @@
+
 # Goal-Den Gaffes
 
 Get ready to laugh your socks off at the silliest side of the beautiful game! Buckle up for epic fails, quirky moments, and unexpected animal guests that will have you rolling on the floor (figuratively, of course!).
