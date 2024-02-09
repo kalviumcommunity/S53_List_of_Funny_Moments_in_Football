@@ -12,7 +12,7 @@ function App() {
     <ChakraProvider>
        <Box
         as="body"
-        h="250vh" 
+        h="100%" 
         bgGradient="linear(to bottom right,  #00bfff,#000d99)" 
       >
         <Home/>
