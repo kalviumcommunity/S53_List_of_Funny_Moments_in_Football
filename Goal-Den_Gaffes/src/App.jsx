@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Home from './Components/Home'
 import { ChakraProvider,Box } from '@chakra-ui/react'
 import Grid from './Components/Grid'
+import Footer from './Components/Footer'
+
 function App() {
 
 
@@ -15,6 +17,8 @@ function App() {
       >
         <Home/>
         <Grid/>
+        <Footer/>
+
       </Box>
       </ChakraProvider>
         </>
