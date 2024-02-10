@@ -30,7 +30,7 @@ const Home = () => {
       <section style={{color: "white",display: "flex",justifyContent: "space-around",marginTop: "10vh",alignItems: "center"}}>
     <h1 style={{fontFamily: "Poppins,sans-serif",fontSize: "70px",paddingRight: "10%"}}>REVEL <br /> IN FOOTBALL'S <br />EPIC FAILS</h1>
         <div style={{display: "flex", alignItems: "center",justifyContent: "space-evenly"}}>
-        <img src="./src/Assets/dog.png" alt="" style={{position: "absolute",zIndex: "1"}}/>
+        <img src="../src/Assets/dog.png" alt="" style={{position: "absolute",zIndex: "1"}}/>
       <div className='ellipse' style={{height: "70vh",width: "20vw",backgroundColor: "yellow",borderRadius: "50%", transform: "rotate(-35deg)",boxShadow: "3px 15px 25px 10px black "}}>
       </div>
         </div>
