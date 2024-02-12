@@ -3,7 +3,7 @@ import german from "../Assets/german.png"
 import epl from "../Assets/epl.png"
 import laliga from "../Assets/SOCIAL LALIGA.png"
 import france from "../Assets/uber eats.png"
-import serie from "../Assets/serie a.jpg"
+import serie from "../Assets/serie A.jpg"
 import ucl from "../Assets/ucl.jpeg"
 import wc from "../Assets/WC.png"
 const Grid = () => {

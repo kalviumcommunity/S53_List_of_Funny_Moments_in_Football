@@ -176,15 +176,6 @@ section img {
     transform: skewX(-40deg);
   }
 }
-.blowing-text--swapsies [data-scroll='in'] .char,
-.blowing-text--swapsies [data-scroll='out'] .char {
-  &:nth-of-type(odd) {
-    transform: translateX(100%);
-  }
-  &:nth-of-type(even) {
-    transform: translateX(-100%);
-  }
-}
 #modal{
   animation-name: bondJamesBond;
   animation-name: killShot;
