@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <div>
-        <footer className="footer p-10 bg-neutral text-neutral-content " style={{marginTop: "42vh"}}>
+        <footer className="footer p-10 bg-neutral text-neutral-content " style={{marginTop: "22vh"}}>
   <aside>
     <p>GOAl-DEN GAFFES</p>
     <p>ACME Industries Ltd.<br/>Providing reliable tech since 1992</p>

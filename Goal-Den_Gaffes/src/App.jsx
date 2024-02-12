@@ -5,6 +5,7 @@ import { SearchIcon } from '@chakra-ui/icons'
 import Grid from './Components/Grid'
 import Footer from './Components/Footer'
 import React from 'react'
+import Card from './Card'
 import {
   Modal,
   ModalOverlay,
@@ -17,7 +18,7 @@ import {
 
 function App() {
   const [modal, setModal] = useState(false)
-
+  const [explore,setExplore] = useState(false)
   return (
     <ChakraProvider>
       <Box
@@ -35,8 +36,10 @@ function App() {
             <Button colorScheme='white' variant='outline' style={{ margin: "0px 30px", width: "6vw" }}>
               Log In
             </Button>
-            <Button colorScheme='white' variant='outline' style={{ margin: "0px 30px" }}>
-              Sign Up
+            <Button colorScheme='white' variant='outline' style={{ margin: "0px 30px" }} onClick={() => {
+              setExplore(false)
+            }}>
+              Home 
             </Button>
           </div>
           <InputGroup style={{ width: "20vw" }}>
@@ -47,7 +50,6 @@ function App() {
           </InputGroup>
         </nav>
 
-        <Home />
         <Modal isOpen={modal} onClose={() => setModal(false)} >
           <ModalOverlay />
           <ModalContent>
@@ -65,7 +67,20 @@ function App() {
             </ModalFooter>
           </ModalContent>
         </Modal>
-        <Grid />
+        {explore ? (
+  <>
+  <Card/>
+  </>
+) : (
+  <>
+  <Home />
+  <Grid explore = {explore} setExplore={setExplore}/>
+  </>
+)}
+
+       
+        
+        {/* <Card/> */}
         <Footer />
       </Box>
     </ChakraProvider>
