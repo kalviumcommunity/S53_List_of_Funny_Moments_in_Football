@@ -6,9 +6,11 @@ import france from "../Assets/uber eats.png"
 import serie from "../Assets/serie A.jpg"
 import ucl from "../Assets/ucl.jpeg"
 import wc from "../Assets/WC.png"
-const Grid = () => {
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import { ArrowForwardIcon } from "@chakra-ui/icons"
+const Grid = ({explore,setExplore}) => {
   return (
-    <div>
+    <div style={{display: "flex",flexDirection: "column",justifyContent: "center",margin: "0",padding: "0"}}>
         <h2>Popular Tournaments</h2>
         <ul className='honey'>
             <li className="unit">
@@ -40,6 +42,11 @@ const Grid = () => {
                 <div className='unit-title'>World Cup</div>
             </li>
         </ul>
+        <Button rightIcon={<ArrowForwardIcon />} colorScheme='white' variant='solid' style={{alignSelf: "flex-end",marginRight: "10%",marginTop: "20%",width: "10vw",height: "7vh",fontSize: "30px"}} onClick={() => {
+            setExplore(!explore)
+        }}>
+    Explore
+  </Button>
     </div>
   )
 }

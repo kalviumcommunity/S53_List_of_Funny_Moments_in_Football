@@ -4,6 +4,7 @@
 *{
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
   
 }
 nav{
@@ -176,67 +177,3 @@ section img {
     transform: skewX(-40deg);
   }
 }
-#modal{
-  animation-name: bondJamesBond;
-  animation-name: killShot;
-  animation-name: fadeToRed;
-  animation-name: slowFade;
-}
-@keyframes bondJamesBond {
-  0% {
-    transform: translateX(1000px);
-  }
-  80% {
-    transform: translateX(0px);
-    border-radius: 75px;
-    height: 75px;
-    width: 75px;
-  }
-  90% {
-    border-radius: 3px;
-    height: 182px;
-    width: 247px;
-  }
-  100% {
-    border-radius: 3px;
-    height: 162px;
-    width: 227px;
-  }
-}
-
-@keyframes killShot {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(300px) rotate(45deg);
-    opacity: 0;
-  }
-}
-
-@keyframes fadeToRed {
-  0% {
-    background-color: rgba(black, .6);
-  }
-  100% {
-    background-color: rgba(red, .8);
-  }
-}
-
-@keyframes slowFade {
-  0% {
-    opacity: 1;
-  }
-  99.9% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-
-
-
-
