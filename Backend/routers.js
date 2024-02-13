@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const express = require("express")
 const Post  = require("./data/schema")
 const app = express()
+const router = express.Router()
 require("dotenv").config()
 
 app.use(express.json())
@@ -17,14 +18,14 @@ connect()
     console.log("Error Connecting to Database!!!")
 })
 
-app.get("/", async (req,res) => {
+router.get("/", async (req,res) => {
     await Post.find().then((data) => {
         returnData = data
         res.send(data)
     })
 })
 
-app.post("/", async (req,res) => {
+router.post("/", async (req,res) => {
     const newdata = new Post(req.body)
     await newdata.save().then((result) => {
         res.send("New Post Added!!!")
@@ -33,7 +34,7 @@ app.post("/", async (req,res) => {
     })
 })
 
-app.put("/:postId", async (req,res)=> {
+router.put("/:postId", async (req,res)=> {
     try{
         let {postId} = req.params
         let newData = req.body
@@ -51,7 +52,7 @@ app.put("/:postId", async (req,res)=> {
     }
 })
 
-app.delete("/", async (req,res) => {
+router.delete("/", async (req,res) => {
     let deletePost = req.body.title
 
     try{
@@ -70,6 +71,6 @@ app.delete("/", async (req,res) => {
 
 })
 
-app.listen(3002,() => {
-    console.log("App listening on port 3002")
-})
+module.exports= {
+    router
+}
