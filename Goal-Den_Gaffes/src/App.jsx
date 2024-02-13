@@ -5,7 +5,7 @@ import { SearchIcon } from '@chakra-ui/icons'
 import Grid from './Components/Grid'
 import Footer from './Components/Footer'
 import React from 'react'
-import Card from './Card'
+import Card from './Components/Card'
 import {
   Modal,
   ModalOverlay,
@@ -15,6 +15,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
+import Listings from './Components/Listings'
 
 function App() {
   const [modal, setModal] = useState(false)
@@ -69,7 +70,7 @@ function App() {
         </Modal>
         {explore ? (
   <>
-  <Card/>
+  <Listings />
   </>
 ) : (
   <>
