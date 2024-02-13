@@ -1,5 +1,9 @@
     const express = require("express");
     // const { MongoClient } = require("mongodb");
+    var cors = require('cors')
+    const app = express();
+    app.use(cors())
+const {router} = require("./routers")
     const mongoose = require("mongoose")
     require("dotenv").config()
 
@@ -11,7 +15,6 @@
         await mongoose.connect(process.env.Mongo_Key)
     }
 
-    const app = express();
 
     app.get("/ping", (req, res) => {
         res.send("Hi");
@@ -31,6 +34,8 @@
         console.error(err.stack);
         res.status(500).send("Something went wrong!");
     });
+
+    app.use("/posts",router)
 
     app.listen(3002,() => {
         console.log("Running on port 3002")

@@ -1,7 +1,6 @@
 const Post = require("../data/schema.js")
 require("dotenv").config()
 
-
 const post1 = new Post({
     postId: 1,
     title: "Zlatan Ibrahimovic Bicycle Kick Fail",
@@ -145,7 +144,7 @@ const post10 = new Post({
 
 const mongoose = require("mongoose")
 // Connect to your local MongoDB instance
-mongoose.connect(process.env.mongoUrl, {
+mongoose.connect(process.env.Mongo_Key, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
