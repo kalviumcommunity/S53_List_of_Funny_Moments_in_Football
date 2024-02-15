@@ -2,10 +2,13 @@ import { useState } from 'react'
 import Home from './Components/Home'
 import { ChakraProvider, Box, Button, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { SearchIcon } from '@chakra-ui/icons'
-import Grid from './Components/Grid'
+// import Grid from './Components/Grid'
 import Footer from './Components/Footer'
 import React from 'react'
 import Card from './Components/Card'
+import Allroutes from './Components/Allroutes'
+import plus from "./Assets/plus-removebg-preview.png"
+import { Link } from 'react-router-dom'
 import {
   Modal,
   ModalOverlay,
@@ -19,7 +22,6 @@ import Listings from './Components/Listings'
 
 function App() {
   const [modal, setModal] = useState(false)
-  const [explore,setExplore] = useState(false)
   return (
     <ChakraProvider>
       <Box
@@ -37,11 +39,18 @@ function App() {
             <Button colorScheme='white' variant='outline' style={{ margin: "0px 30px", width: "6vw" }}>
               Log In
             </Button>
-            <Button colorScheme='white' variant='outline' style={{ margin: "0px 30px" }} onClick={() => {
-              setExplore(false)
-            }}>
+            <Link to={"/"}>
+            <Button colorScheme='white' variant='outline' style={{ margin: "0px 30px" }} 
+            >
               Home 
             </Button>
+            </Link>
+            <Link to={"/create"}>
+            <Button colorScheme='white' variant='outline' style={{ margin: "0px 30px",fontSize:"30px" }} 
+            >
+              <img src={plus} alt="" style={{width:"1vw"}}/>
+            </Button>
+            </Link>
           </div>
           <InputGroup style={{ width: "20vw" }}>
             <InputLeftElement pointerEvents='none'>
@@ -68,19 +77,10 @@ function App() {
             </ModalFooter>
           </ModalContent>
         </Modal>
-        {explore ? (
-  <>
-  <Listings />
-  </>
-) : (
-  <>
-  <Home />
-  <Grid explore = {explore} setExplore={setExplore}/>
-  </>
-)}
+        
 
        
-        
+        <Allroutes/>
         {/* <Card/> */}
         <Footer />
       </Box>
