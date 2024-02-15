@@ -4,8 +4,7 @@ const schema = mongoose.Schema
 
 const postSchema = new schema({
     postId: {
-        type: Number,
-        required: true
+        type: Number
     },
     title: {
         type: String,
