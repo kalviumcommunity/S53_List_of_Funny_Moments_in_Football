@@ -1,22 +1,21 @@
 const mongoose = require("mongoose")
 const express = require("express")
 const Post  = require("./data/schema")
-const app = express()
 const router = express.Router()
 require("dotenv").config()
 
-app.use(express.json())
 
-async function connect(){
-    await mongoose.connect(process.env.Mongo_Key)
-}
 
-connect()
-.then(() => {
-    console.log("Connected to Database!!!")
-}).catch((err) => {
-    console.log("Error Connecting to Database!!!")
-})
+// async function connect(){
+//     await mongoose.connect(process.env.Mongo_Key)
+// }
+
+// connect()
+// .then(() => {
+//     console.log("Connected to Database!!!")
+// }).catch((err) => {
+//     console.log("Error Connecting to Database!!!")
+// })
 
 router.get("/", async (req,res) => {
     await Post.find().then((data) => {
@@ -26,6 +25,7 @@ router.get("/", async (req,res) => {
 })
 
 router.post("/", async (req,res) => {
+    console.log(req.body);
     const newdata = new Post(req.body)
     await newdata.save().then((result) => {
         res.send("New Post Added!!!")
