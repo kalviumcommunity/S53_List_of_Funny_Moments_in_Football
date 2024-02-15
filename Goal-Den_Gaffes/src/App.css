@@ -177,3 +177,6 @@ section img {
     transform: skewX(-40deg);
   }
 }
+form::placeholder{
+  color: white;
+}

@@ -9,7 +9,7 @@ const CustomCard = ({title,video,year,league}) => {
   width="560"
   height="315"
   controls
-  style={{ width: "100%", borderRadius: "10px" }}
+  style={{ width: "100%", borderRadius: "10px",height: "50%" }}
 >
   <source src={video} type="video/mp4" />
   {/* Your browser does not support the video tag. */}
