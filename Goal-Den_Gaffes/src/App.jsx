@@ -9,6 +9,7 @@ import Card from './Components/Card'
 import Allroutes from './Components/Allroutes'
 import plus from "./Assets/plus-removebg-preview.png"
 import { Link } from 'react-router-dom'
+
 import {
   Modal,
   ModalOverlay,
@@ -19,6 +20,7 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 import Listings from './Components/Listings'
+import Update from './Components/Update'
 
 function App() {
   const [modal, setModal] = useState(false)
@@ -77,6 +79,7 @@ function App() {
             </ModalFooter>
           </ModalContent>
         </Modal>
+        {/* <Update /> */}
         
 
        
