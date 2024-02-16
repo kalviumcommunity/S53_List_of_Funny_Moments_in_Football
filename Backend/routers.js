@@ -6,17 +6,6 @@ require("dotenv").config()
 
 
 
-// async function connect(){
-//     await mongoose.connect(process.env.Mongo_Key)
-// }
-
-// connect()
-// .then(() => {
-//     console.log("Connected to Database!!!")
-// }).catch((err) => {
-//     console.log("Error Connecting to Database!!!")
-// })
-
 router.get("/", async (req,res) => {
     await Post.find().then((data) => {
         returnData = data
@@ -24,33 +13,48 @@ router.get("/", async (req,res) => {
     })
 })
 
-router.post("/", async (req,res) => {
-    console.log(req.body);
-    const newdata = new Post(req.body)
-    await newdata.save().then((result) => {
-        res.send("New Post Added!!!")
-    }).catch((err) => {
-        res.status(500).send(err)
-    })
-})
-
-router.put("/:postId", async (req,res)=> {
-    try{
-        let {postId} = req.params
-        let newData = req.body
-
-        let result  = await Post.findOneAndUpdate({postId: postId}, newData)
-        
-        if (result === null || result === undefined){
-            res.status(404).send(err)
-        }
-        else{
-            res.send("Updated!!!")
-        }
-    }catch(err){
-        res.status(500).send("Error!!!: ",err.message)
+router.post("/", async (req, res) => {
+    try {
+        const postCount = await Post.countDocuments();
+        const newPost = new Post({
+            postId: postCount + 1, 
+            title: req.body.title,
+            video: req.body.video,
+            year: req.body.year,
+            league: req.body.league,
+        });
+        await newPost.save();
+        res.send("New Post Added!!!");
+    } catch (err) {
+        res.status(500).send(err);
     }
 })
+
+router.put("/", async (req, res) => {
+    const titleToUpdate = req.body.title;
+    try {
+        const existingPost = await Post.findOne({ title: titleToUpdate });
+        if (!existingPost) {
+            return res.status(404).send("Post not found");
+        }
+
+        
+        existingPost.title = req.body.title;
+        existingPost.video = req.body.video;
+        existingPost.year = req.body.year;
+        existingPost.league = req.body.league;
+        existingPost.continent = req.body.continent;
+        existingPost.likes = req.body.likes;
+        existingPost.comments = req.body.comments;
+
+        await existingPost.save();
+
+        res.send("Post updated successfully!");
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
 
 router.delete("/", async (req,res) => {
     let deletePost = req.body.title
