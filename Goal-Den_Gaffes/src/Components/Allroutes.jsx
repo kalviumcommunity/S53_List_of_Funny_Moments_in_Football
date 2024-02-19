@@ -7,7 +7,8 @@ import App from '../App';
 import Update from './Update';
 import Home from './Home';
 import Post from './Post';
-
+import Login from "./Login"
+import Signup from './Signup';
 
 export default function Allroutes() {
   return (
@@ -16,6 +17,8 @@ export default function Allroutes() {
         <Route path="/listings" element={<Listings/>} />
         <Route path="/create" element={<Post/>}/>
         <Route path="/update" element={<Update/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path= "/signup" element={<Signup/>} />
         {/* <Route path="/listings/details/:id" element={<CardDetailed/>} /> */}
         {/* <Route path="/listings/edit/:id" element={<Edit/>} /> */}
     </Routes>

@@ -17,19 +17,20 @@ const loginSchema = Joi.object({
 const signup = async (req, res) => {
     try {
         const { error } = signupSchema.validate(req.body);
-        if (error) return res.status(400).json({ error: error.details[0].message });
-
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
+        console.log(req.body)
         const { fullname, username, password } = req.body;
 
         // Check if the username already exists
-        // console.log(username);
-        // const existingUser = await User.findOne({username:username});
-        // if (existingUser) {
-        //     return res.status(400).json({ error: 'Username already exists' });
-        // }
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(400).json({ error: 'Username already exists' });
+        }
 
         // Hash the password
-        const salt = await bcrypt.genSalt(10)
+        const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // Create a new user
@@ -49,25 +50,26 @@ const signup = async (req, res) => {
     }
 }
 
-const login = async (req, res) => {
+const login = (req, res) => {
     try {
-        const { error,data } = loginSchema.validate(req.body);
-        console.log(data)
-        if (error) return res.status(400).json({ error: error.details[0].message });
-        console.log(req.body)
+        const { error } = loginSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
+
         const { username, password } = req.body;
 
         // Check if the user exists
-        const user = await User.findOne({ username })
+        const user =  User.findOne({ username })
         if (!user) {
             return res.status(400).json({ error: "Invalid Username or Password" });
         }
 
         // Compare passwords
-        // const isPasswordCorrect = await bcrypt.compare(password, user.password);
-        // if (!isPasswordCorrect) {
-        //     return res.status(400).json({ error: "Invalid Username or Password" });
-        // }
+        const isPasswordCorrect =  bcrypt.compare(password, user.password);
+        if (!isPasswordCorrect) {
+            return res.status(400).json({ error: "Invalid Username or Password" });
+        }
 
         res.status(200).json({
             username: user.username,
