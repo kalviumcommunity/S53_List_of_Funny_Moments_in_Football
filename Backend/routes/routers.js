@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const Post = require("./data/schema");
+const Post = require("../data/schema");
 const Joi = require("joi");
-
 const router = express.Router();
+
 require("dotenv").config();
 
 // Joi schema for post data validation
@@ -16,6 +16,8 @@ const postSchema = Joi.object({
     likes: Joi.string().allow(''),
     comments: Joi.array().items(Joi.string())
 });
+
+
 
 router.get("/", async (req, res) => {
     try {
@@ -31,7 +33,6 @@ router.post("/", async (req, res) => {
         const { error } = postSchema.validate(req.body);
         if (error) {
             return res.status(400).send(error.details[0].message);
-            res.end("Validation error")
         }
 
         const postCount = await Post.countDocuments();
@@ -93,4 +94,4 @@ router.delete("/", async (req, res) => {
     }
 });
 
-module.exports = {router};
+module.exports = { router };
