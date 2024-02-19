@@ -34,7 +34,7 @@ const post3 = new Post({
     title: "Pele vs Goalkeepers",
     video: "https://i.imgur.com/wm9hoTr.mp4",
     year: "Throughout his career",
-    league: " Brasileirão Série B,",
+    league: " Brasileirão Série B",
     continent: "South America",
     likes: "1002",
     comments: [

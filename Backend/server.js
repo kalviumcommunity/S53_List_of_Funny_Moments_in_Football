@@ -1,23 +1,24 @@
 const express = require("express");
-// const { MongoClient } = require("mongodb");
-var cors = require("cors");
-const app = express();
-app.use(cors());
-app.use(express.json())
-const { router } = require("./routers");
+const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const {router} = require("./routes/routers");
+const {Authroute} = require("./routes/userRoutes")
 
-// let db; // declare a variable to hold the database connection
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-// mongoUrl = "mongodb+srv://Sharugeshwaran:GdkXj8a2gNN4ne93@cluster0.hdsmqjq.mongodb.net/"
 async function connectDatabase() {
-  await mongoose.connect(process.env.Mongo_Key).then(res=>{
-    console.log("database connected")
-  })
+  try {
+    await mongoose.connect(process.env.Mongo_Key);
+    console.log("Database connected successfully");
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
 }
 
-connectDatabase()
+connectDatabase();
 
 app.get("/ping", (req, res) => {
   res.send("Hi");
@@ -27,13 +28,15 @@ app.get("/", (req, res) => {
   res.send("Welcome to Funny moment API");
 });
 
+app.use("/auth", Authroute); // Mount authentication routes
+app.use("/posts", router); // Mount post routes
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
 });
 
-app.use("/posts", router);
-
-app.listen(3002, () => {
-  console.log("Running on port 3002");
+const PORT = process.env.PORT || 3002;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
