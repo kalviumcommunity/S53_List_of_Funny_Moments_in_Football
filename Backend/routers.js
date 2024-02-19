@@ -1,20 +1,39 @@
-const mongoose = require("mongoose")
-const express = require("express")
-const Post  = require("./data/schema")
-const router = express.Router()
-require("dotenv").config()
+const mongoose = require("mongoose");
+const express = require("express");
+const Post = require("./data/schema");
+const Joi = require("joi");
 
+const router = express.Router();
+require("dotenv").config();
 
+// Joi schema for post data validation
+const postSchema = Joi.object({
+    title: Joi.string().required(),
+    video: Joi.string().required(),
+    league: Joi.string().allow(''),
+    year: Joi.string().allow(''),
+    continent: Joi.string().allow(''),
+    likes: Joi.string().allow(''),
+    comments: Joi.array().items(Joi.string())
+});
 
-router.get("/", async (req,res) => {
-    await Post.find().then((data) => {
-        returnData = data
-        res.send(data)
-    })
-})
+router.get("/", async (req, res) => {
+    try {
+        const data = await Post.find();
+        res.send(data);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
 
 router.post("/", async (req, res) => {
     try {
+        const { error } = postSchema.validate(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+            res.end("Validation error")
+        }
+
         const postCount = await Post.countDocuments();
         const newPost = new Post({
             postId: postCount + 1, 
@@ -22,59 +41,56 @@ router.post("/", async (req, res) => {
             video: req.body.video,
             year: req.body.year,
             league: req.body.league,
+            continent: req.body.continent,
+            likes: req.body.likes,
+            comments: req.body.comments
         });
         await newPost.save();
         res.send("New Post Added!!!");
     } catch (err) {
-        res.status(500).send(err);
+        res.status(500).send(err.message);
     }
-})
+});
 
 router.put("/", async (req, res) => {
     const titleToUpdate = req.body.title;
     try {
+        const { error } = postSchema.validate(req.body);
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+
         const existingPost = await Post.findOne({ title: titleToUpdate });
+        
         if (!existingPost) {
             return res.status(404).send("Post not found");
         }
 
-        
-        existingPost.title = req.body.title;
-        existingPost.video = req.body.video;
-        existingPost.year = req.body.year;
-        existingPost.league = req.body.league;
-        existingPost.continent = req.body.continent;
-        existingPost.likes = req.body.likes;
-        existingPost.comments = req.body.comments;
+        // Update existing post fields
+        Object.assign(existingPost, req.body);
 
         await existingPost.save();
 
         res.send("Post updated successfully!");
-    } catch (err) {
-        res.status(500).send(err);
+    } catch (error) {
+        res.status(500).send(error.message);
     }
 });
 
+router.delete("/", async (req, res) => {
+    const deletePostTitle = req.body.title;
 
-router.delete("/", async (req,res) => {
-    let deletePost = req.body.title
+    try {
+        const result = await Post.deleteOne({ title: deletePostTitle });
 
-    try{
-        let result = await Post.deleteOne({title: deletePost})
-
-        if(result.deletedCount == 0){
-            res.status(404).send("Post not found!!!!")
+        if (result.deletedCount === 0) {
+            return res.status(404).send("Post not found");
+        } else {
+            res.send("Post Deleted!!!");
         }
-        else{
-            res.send("Post Deleted!!!")
-        }
-    }catch(err){
-        res.status(500).send("Error Deleting Post",err.message)
+    } catch (err) {
+        res.status(500).send(err.message);
     }
+});
 
-
-})
-
-module.exports= {
-    router
-}
+module.exports = {router};
