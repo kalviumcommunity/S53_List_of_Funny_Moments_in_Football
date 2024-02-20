@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie'
 
 const Signup = () => {
   const [fullname, setName] = useState('');
@@ -15,6 +16,9 @@ const Signup = () => {
     console.log(data)
     try {
       const response = await axios.post('http://localhost:3002/auth/signup', data);
+      const {token} = response.data
+      Cookies.set("User",username)
+      Cookies.set("JWT-token",token)
       toast.success('Signed Up Successfully!!!', {
         position: 'top-right',
         autoClose: 3000,
