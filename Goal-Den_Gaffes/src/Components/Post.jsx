@@ -18,7 +18,7 @@ const Post = () => {
     let data = { title, year, league, video, user };
     // console.log(data)
     try {
-      const response = await axios.post("http://localhost:3002/posts", data);
+      const response = await axios.post("https://goal-den-gaffes.onrender.com/posts", data);
       console.log(data)
       toast.success('Post Added Successfully!!!', {
         position: "top-right",

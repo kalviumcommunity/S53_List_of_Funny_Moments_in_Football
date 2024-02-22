@@ -15,7 +15,7 @@ const Signup = () => {
     let data = { fullname, username, password, confirmPassword };
     console.log(data)
     try {
-      const response = await axios.post('http://localhost:3002/auth/signup', data);
+      const response = await axios.post('https://goal-den-gaffes.onrender.com/signup', data);
       const {token} = response.data
       Cookies.set("User",username)
       Cookies.set("JWT-token",token)

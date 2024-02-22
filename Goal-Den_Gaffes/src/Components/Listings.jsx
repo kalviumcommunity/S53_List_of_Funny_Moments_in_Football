@@ -12,20 +12,19 @@ function Listings() {
     const dropdownRef = useRef(null); // Ref for dropdown menu
 
     useEffect(() => {
-        axios.get("http://localhost:3002/posts/")
+        axios.get("https://goal-den-gaffes.onrender.com/posts/")
             .then((res) => {
                 setData(res.data);
                 setLoading(false);
-                console.log(data)
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
                 setLoading(false);
             });
-        axios.get("http://localhost:3002/auth/")
+        axios.get("https://goal-den-gaffes.onrender.com/auth/")
             .then((res) => {
                 setUsers(res.data);
-                console.log("Users fetched");
+                
             })
             .catch(err => {
                 console.log("Error fetching users: ", err);
