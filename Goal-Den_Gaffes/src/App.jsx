@@ -27,7 +27,7 @@ function App() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored'
+      theme: 'colored',
     })
     // You can also add any other sign out logic here
   };

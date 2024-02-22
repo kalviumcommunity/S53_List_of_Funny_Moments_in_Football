@@ -1,8 +1,8 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const postSchema = new schema({
+const postSchema = new Schema({
     postId: {
         type: Number
     },
@@ -19,9 +19,13 @@ const postSchema = new schema({
     continent: String,
     likes: Number,
     comments: Array,
-    time: { type: Date, default: Date.now() }
-},{ timestamps: true })
+    time: { type: Date, default: Date.now() },
+    created_by : {
+        type : String,
+        required : true
+    }
+}, { timestamps: true });
 
-const Post = mongoose.model("Post",postSchema)
+const Post = mongoose.model("Post", postSchema);
 
-module.exports = Post
+module.exports = Post;

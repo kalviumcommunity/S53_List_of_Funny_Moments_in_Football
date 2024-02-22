@@ -16,8 +16,8 @@ const Login = () => {
       // Store the username and token in cookies
       const { accessToken } = response.data; 
       // console.log(response)// Retrieve access token from response
-      Cookies.set('User', username, { expires: 10 });
       Cookies.set("JWT-token", accessToken); // Store access token in a cookie
+      Cookies.set('User', username);
       toast.success('Logged In Successfully!!!', {
         position: 'top-right',
         autoClose: 3000,

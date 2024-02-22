@@ -13,6 +13,7 @@ const post1 = new Post({
         { user: "RealBaller", comment: "😂🤣" },
         { user: "Goatnaldo", comment: "👌🤣" },
       ],
+    created_by: "Developer"
 })
 
 const post2 = new Post({
@@ -27,6 +28,7 @@ const post2 = new Post({
         { user: "RealBaller", comment: "😂🤣" },
         { user: "Goatnaldo", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 const post3 = new Post({
@@ -41,6 +43,7 @@ const post3 = new Post({
         { user: "La_Pulga", comment: "😂🤣" },
         { user: "Goatnaldo", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 const post4 = new Post({
@@ -55,6 +58,7 @@ const post4 = new Post({
         { user: "RealBaller", comment: "😂🤣" },
         { user: "Lion", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 const post5 = new Post({
@@ -69,6 +73,7 @@ const post5 = new Post({
         { user: "RealBaller", comment: "😂🤣" },
         { user: "Ney_Love", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 const post6 = new Post({
@@ -83,6 +88,7 @@ const post6 = new Post({
         { user: "RealBaller", comment: "😂🤣" },
         { user: "Goatnaldo", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 const post7 = new Post({
@@ -97,6 +103,7 @@ const post7 = new Post({
         { user: "Leo_love", comment: "😂🤣" },
         { user: "Goatnaldo", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 const post8 = new Post({
@@ -111,6 +118,7 @@ const post8 = new Post({
         { user: "RealBaller", comment: "😂🤣" },
         { user: "Goatnaldo", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 const post9 = new Post({
@@ -125,6 +133,7 @@ const post9 = new Post({
         { user: "RealBaller", comment: "❤️❤️" },
         { user: "Goatnaldo", comment: "👌❤️" },
       ],
+      created_by: "Developer"
 })
 
 const post10 = new Post({
@@ -139,6 +148,7 @@ const post10 = new Post({
         { user: "RealBaller", comment: "😂🤣" },
         { user: "Goatnaldo", comment: "👌🤣" },
       ],
+      created_by: "Developer"
 })
 
 
@@ -155,4 +165,4 @@ const postData = [post1, post2, post3, post4, post5, post6, post7, post8, post9,
 
 Post.insertMany(postData)
   .then(() => console.log('Post added successfully!'))
-  .catch(err => console.error('Error adding post:', err));
+  .catch(err => console.error('Error adding post:', err))
