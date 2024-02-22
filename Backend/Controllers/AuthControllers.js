@@ -86,7 +86,7 @@ const login = async (req, res) => {
         });
     } catch (error) {
         console.error("Error in Login Controller", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error1" });
     }
 }
 
