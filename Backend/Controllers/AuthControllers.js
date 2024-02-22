@@ -42,10 +42,12 @@ const signup = async (req, res) => {
         });
 
         // Save the user
-        await newUser.save();
-
+        
         // Sign the token
         const token = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET);
+        await newUser.save();
+        console.log(token)
+        console.log(newUser)
 
         res.status(201).json({ message: "User created successfully", token });
     } catch (error) {
