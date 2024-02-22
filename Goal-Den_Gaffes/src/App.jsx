@@ -16,7 +16,8 @@ function App() {
   // Function to handle sign out
   const handleSignOut = () => {
     // Remove the 'username' cookie
-    Cookies.remove('username');
+    Cookies.remove('User');
+    Cookies.remove("JWT-token")
     console.log("clicked")
     toast.success('Logged Out Successfully!!!', {
       position: 'top-right',
@@ -26,7 +27,7 @@ function App() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'colored'
+      theme: 'colored',
     })
     // You can also add any other sign out logic here
   };

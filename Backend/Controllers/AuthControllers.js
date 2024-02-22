@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const Joi = require("joi");
 const User = require("../data/User");
+const jwt = require("jsonwebtoken");
 
 const signupSchema = Joi.object({
     fullname: Joi.string().min(3).max(30).required(),
@@ -20,7 +21,7 @@ const signup = async (req, res) => {
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
         }
-        console.log(req.body)
+
         const { fullname, username, password } = req.body;
 
         // Check if the username already exists
@@ -43,14 +44,17 @@ const signup = async (req, res) => {
         // Save the user
         await newUser.save();
 
-        res.status(201).json({ message: "User created successfully" });
+        // Sign the token
+        const token = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET);
+
+        res.status(201).json({ message: "User created successfully", token });
     } catch (error) {
         console.error("Error in Signup Controller", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
-const login = (req, res) => {
+const login = async (req, res) => {
     try {
         const { error } = loginSchema.validate(req.body);
         if (error) {
@@ -60,20 +64,23 @@ const login = (req, res) => {
         const { username, password } = req.body;
 
         // Check if the user exists
-        const user =  User.findOne({ username })
+        const user = await User.findOne({ username });
         if (!user) {
             return res.status(400).json({ error: "Invalid Username or Password" });
         }
 
         // Compare passwords
-        const isPasswordCorrect =  bcrypt.compare(password, user.password);
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (!isPasswordCorrect) {
             return res.status(400).json({ error: "Invalid Username or Password" });
         }
 
+        // Sign the token
+        const token = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET);
+
         res.status(200).json({
-            username: user.username,
-            fullname: user.fullname
+            username: username,
+            accessToken: token
         });
     } catch (error) {
         console.error("Error in Login Controller", error);

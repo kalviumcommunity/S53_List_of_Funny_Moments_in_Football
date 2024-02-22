@@ -6,6 +6,14 @@ const Authroute = express.Router();
 
 Authroute.post("/signup", signup);
 Authroute.post("/login", login);
+Authroute.get("/",async (req,res) => {
+    try{
+        const data = await User.find()
+        res.send(data)
+    }catch(err){
+        res.status(500).send(err.message)
+    }
+})
 
 // Authroute.get("/",async(req,res) => {
 //     try {

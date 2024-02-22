@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Post = () => {
@@ -8,14 +9,17 @@ const Post = () => {
   const [year, setYear] = useState("");
   const [league, setLeague] = useState("");
   const [video, setVideo] = useState("");
+  const [user, setUser] = useState("");
 
   const createPost = async (event) => {
     event.preventDefault();
-    let data = { title, year, league, video };
-    // console.log(data); // Log the data being sent
+    setUser(Cookies.get("User"));
+    console.log(user)
+    let data = { title, year, league, video, user };
+    // console.log(data)
     try {
-      const response = await axios.post("https://goal-den-gaffes.onrender.com/posts/", data);
-      // console.log(response.data); // Log the response from the server
+      const response = await axios.post("https://goal-den-gaffes.onrender.com/posts", data);
+      console.log(data)
       toast.success('Post Added Successfully!!!', {
         position: "top-right",
         autoClose: 3000,
@@ -27,7 +31,7 @@ const Post = () => {
         theme: "colored"
       });
     } catch (err) {
-      console.error(err); // Log the error for debugging
+      console.error(err);
       toast.error('Oops! Something went wrong.', {
         position: "top-right",
         autoClose: 3000,

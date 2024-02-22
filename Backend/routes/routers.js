@@ -14,7 +14,8 @@ const postSchema = Joi.object({
     year: Joi.string().allow(''),
     continent: Joi.string().allow(''),
     likes: Joi.string().allow(''),
-    comments: Joi.array().items(Joi.string())
+    comments: Joi.array().items(Joi.string()),
+    user : Joi.string().required()
 });
 
 
@@ -30,6 +31,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
+        console.log(req.body)
         const { error } = postSchema.validate(req.body);
         if (error) {
             return res.status(400).send(error.details[0].message);
@@ -44,7 +46,8 @@ router.post("/", async (req, res) => {
             league: req.body.league,
             continent: req.body.continent,
             likes: req.body.likes,
-            comments: req.body.comments
+            comments: req.body.comments,
+            created_by: req.body.user
         });
         await newPost.save();
         res.send("New Post Added!!!");

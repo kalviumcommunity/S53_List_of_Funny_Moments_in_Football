@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 const CustomCard = ({title, video, year, league}) => {
   // const navigate = useNavigate()
+  console.log(video )
   const API_URL = 'https://goal-den-gaffes.onrender.com/posts/';
   const deleteData = { title };
   const [showUpdateForm, setShowUpdateForm] = useState(false);
