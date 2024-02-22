@@ -13,9 +13,8 @@ const Signup = () => {
   const createUser = async (event) => {
     event.preventDefault();
     let data = { fullname, username, password, confirmPassword };
-    console.log(data)
     try {
-      const response = await axios.post('https://goal-den-gaffes.onrender.com/signup', data);
+      const response = await axios.post('http://localhost:3002/signup', data);
       const {token} = response.data
       Cookies.set("User",username)
       Cookies.set("JWT-token",token)
@@ -29,6 +28,7 @@ const Signup = () => {
         progress: undefined,
         theme: 'colored'
       });
+      console.log(data)
     } catch (err) {
       console.error(err);
       toast.error('Oops! Something went wrong.', {

@@ -12,7 +12,7 @@ const Login = () => {
     event.preventDefault();
     let data = { username, password };
     try {
-      const response = await axios.post('https://goal-den-gaffes.onrender.com/auth/login', data);
+      const response = await axios.post('http://localhost:3002/auth/login', data);
       // Store the username and token in cookies
       const { accessToken } = response.data; 
       // console.log(response)// Retrieve access token from response
