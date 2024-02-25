@@ -3,6 +3,8 @@ const Joi = require("joi");
 const User = require("../data/User");
 const jwt = require("jsonwebtoken");
 
+require("dotenv").config();
+
 const signupSchema = Joi.object({
     fullname: Joi.string().min(3).max(30).required(),
     username: Joi.string().alphanum().min(3).max(30).required(),
@@ -42,17 +44,15 @@ const signup = async (req, res) => {
         });
 
         // Save the user
-        
+        await newUser.save();
+
         // Sign the token
         const token = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET);
-        await newUser.save();
-        console.log(token)
-        console.log(newUser)
 
         res.status(201).json({ message: "User created successfully", token });
     } catch (error) {
         console.error("Error in Signup Controller", error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json(error);
     }
 }
 
@@ -86,7 +86,7 @@ const login = async (req, res) => {
         });
     } catch (error) {
         console.error("Error in Login Controller", error);
-        res.status(500).json({ error: "Internal Server Error1" });
+        res.status(500).json({ error: "Internal Server Error" });
     }
 }
 

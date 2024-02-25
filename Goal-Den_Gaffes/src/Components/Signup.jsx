@@ -14,7 +14,7 @@ const Signup = () => {
     event.preventDefault();
     let data = { fullname, username, password, confirmPassword };
     try {
-      const response = await axios.post('http://localhost:3002/signup', data);
+      const response = await axios.post('https://goal-den-gaffes.onrender.com/auth/signup', data);
       const {token} = response.data
       Cookies.set("User",username)
       Cookies.set("JWT-token",token)
