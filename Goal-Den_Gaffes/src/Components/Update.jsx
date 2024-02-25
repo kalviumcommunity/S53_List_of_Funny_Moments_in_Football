@@ -21,7 +21,7 @@ const Update = ({title, video, year, league,user,id}) => {
         const updatedPost = { title: updatedTitle, year: updatedYear, league: updatedLeague, video: updatedVideo,created_by: user };
         console.log(updatedPost);
 
-        axios.put(`http://localhost:3002/posts/${id}`, updatedPost)
+        axios.put(`https://goal-den-gaffes.onrender.com/${id}`, updatedPost)
             .then(() => {
                 toast.success('Post Updated Successfully!!. Reload to get the new updated data.', {
                     position: "top-right",
