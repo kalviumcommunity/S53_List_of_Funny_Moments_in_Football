@@ -9,17 +9,17 @@ const Post = () => {
   const [year, setYear] = useState("");
   const [league, setLeague] = useState("");
   const [video, setVideo] = useState("");
-  const [user, setUser] = useState("");
+  const [created_by, setUser] = useState("");
 
   const createPost = async (event) => {
     event.preventDefault();
     setUser(Cookies.get("User"));
-    console.log(user)
-    let data = { title, year, league, video, user };
+    // console.log(user)
+    let data = { title, year, league, video, created_by };
     // console.log(data)
+    console.log(data)
     try {
       const response = await axios.post("https://goal-den-gaffes.onrender.com/posts", data);
-      console.log(data)
       toast.success('Post Added Successfully!!!', {
         position: "top-right",
         autoClose: 3000,

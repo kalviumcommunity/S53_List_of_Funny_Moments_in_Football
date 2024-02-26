@@ -65,7 +65,7 @@ function Listings() {
 
             {dropdownVisible && (
                 <div ref={dropdownRef} id="dropdown" className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" style={{ marginTop: "2vh" }}>
-                    <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton" style={{zIndex: "-1"}}>
                         {users && users.map((user, i) => (
                             <li key={i}>
                                 <a href="#" className={`block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${selectedUser === user.username ? 'font-bold' : ''}`} onClick={() => handleUserClick(user.username)}>
@@ -78,12 +78,12 @@ function Listings() {
             )}
             {loading && <RingLoader color="white" size={100}/>}
             {!loading && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", paddingTop: "10vh", justifyItems: "center",marginBottom: "15vh" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", paddingTop: "10vh", justifyItems: "center",marginBottom: "20vh"}}>
                      {
                         data
                             .filter(item => !selectedUser || item.created_by === selectedUser) 
                             .map((item, index) => (
-                                <CustomCard key={index} title={item.title} video={item.video} year={item.year} league={item.league} user={item.created_by} id={item.postId}/>
+                                <CustomCard key={index} title={item.title} video={item.video} year={item.year} league={item.league} user={item.created_by} id={item._id}/>
                             ))
                     }
                 </div>

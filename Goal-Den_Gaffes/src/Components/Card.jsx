@@ -33,14 +33,14 @@ const CustomCard = ({title, video, year, league,user,id}) => {
   const handleUpdateClick = () => {
     setShowUpdateForm(true);
     // navigate('/update');
-    console.log(user)
-    console.log(title)
+    // console.log(user)
+    // console.log(title)
   };
 
   return (
     <>
       {!showUpdateForm ? (
-        <ChakraCard  style={{fontFamily: "", boxShadow: "5px 0px 15px 0px black", height: "70vh", margin: "6%",width: "24vw"}}>
+        <ChakraCard  style={{fontFamily: "", boxShadow: "5px 0px 15px 0px black", height: "70vh", margin: "8%",width: "24vw",marginTop: ""}}>
           <CardBody>
             <video
               width="560"

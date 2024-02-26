@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
             continent: req.body.continent,
             likes: req.body.likes,
             comments: req.body.comments,
-            created_by: req.body.user
+            created_by: req.body.created_by
         });
         await newPost.save();
         res.send("New Post Added!!!");
