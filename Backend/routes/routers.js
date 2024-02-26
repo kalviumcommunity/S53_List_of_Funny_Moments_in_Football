@@ -15,7 +15,7 @@ const postSchema = Joi.object({
     continent: Joi.string().allow(''),
     likes: Joi.string().allow(''),
     comments: Joi.array().items(Joi.string()),
-    user : Joi.string().required()
+    created_by : Joi.string().required()
 });
 
 
@@ -56,15 +56,15 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.put("/", async (req, res) => {
-    const titleToUpdate = req.body.title;
+router.put("/:id", async (req, res) => {
+    const _id = req.params.id; // Assuming postId is passed as the parameter
     try {
         const { error } = postSchema.validate(req.body);
         if (error) {
             return res.status(400).send(error.details[0].message);
         }
 
-        const existingPost = await Post.findOne({ title: titleToUpdate });
+        const existingPost = await Post.findOne({ _id: _id });
         
         if (!existingPost) {
             return res.status(404).send("Post not found");
@@ -80,6 +80,7 @@ router.put("/", async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
 
 router.delete("/", async (req, res) => {
     const deletePostTitle = req.body.title;
