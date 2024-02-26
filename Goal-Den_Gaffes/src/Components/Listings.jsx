@@ -78,7 +78,7 @@ function Listings() {
             )}
             {loading && <RingLoader color="white" size={100}/>}
             {!loading && (
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", paddingTop: "10vh", justifyItems: "center" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", paddingTop: "10vh", justifyItems: "center",marginBottom: "15vh" }}>
                      {
                         data
                             .filter(item => !selectedUser || item.created_by === selectedUser) 

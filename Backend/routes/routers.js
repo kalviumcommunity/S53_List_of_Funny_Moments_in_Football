@@ -57,14 +57,14 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-    const postId = req.params.id; // Assuming postId is passed as the parameter
+    const _id = req.params.id; // Assuming postId is passed as the parameter
     try {
         const { error } = postSchema.validate(req.body);
         if (error) {
             return res.status(400).send(error.details[0].message);
         }
 
-        const existingPost = await Post.findOne({ postId: postId });
+        const existingPost = await Post.findOne({ _id: _id });
         
         if (!existingPost) {
             return res.status(404).send("Post not found");
