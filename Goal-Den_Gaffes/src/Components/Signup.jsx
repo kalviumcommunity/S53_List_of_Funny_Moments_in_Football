@@ -28,7 +28,6 @@ const Signup = () => {
         progress: undefined,
         theme: 'colored'
       });
-      console.log(data)
     } catch (err) {
       console.error(err);
       toast.error('Oops! Something went wrong.', {

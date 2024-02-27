@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Post = () => {
@@ -10,14 +11,15 @@ const Post = () => {
   const [league, setLeague] = useState("");
   const [video, setVideo] = useState("");
   const [created_by, setUser] = useState("");
+  const [yes, setYes] = useState(false);
+
+  
 
   const createPost = async (event) => {
     event.preventDefault();
     setUser(Cookies.get("User"));
-    // console.log(user)
-    let data = { title, year, league, video, created_by };
-    // console.log(data)
-    console.log(data)
+    const data = { title, year, league, video, created_by };
+
     try {
       const response = await axios.post("https://goal-den-gaffes.onrender.com/posts", data);
       toast.success('Post Added Successfully!!!', {
@@ -78,8 +80,12 @@ const Post = () => {
             <label htmlFor="floating_last_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Year with Month</label>
           </div>
         </div>
-
+        <div style={{width: "100%" ,flexDirection: "row",display: "flex", justifyContent: "space-between"}}>
         <button type="submit" style={{ backgroundColor: "white", color: "blue", width: "7vw", height: "5vh", marginTop: "7vh", borderRadius: "10px" }}>Submit</button>
+        <Link to={"/listings"}>
+        <button style={{ backgroundColor: "white", color: "blue", width: "7vw", height: "5vh", marginTop: "7vh", borderRadius: "10px" }}>Posts</button>
+        </Link>
+        </div>
       </form>
       <ToastContainer
         position="top-right"

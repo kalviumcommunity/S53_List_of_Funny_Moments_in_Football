@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import Update from './Update';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const CustomCard = ({title, video, year, league,user,id}) => {
   const API_URL = 'https://goal-den-gaffes.onrender.com/posts/';
@@ -12,26 +13,54 @@ const CustomCard = ({title, video, year, league,user,id}) => {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
 
   const handleDelete = () => {
-    axios.delete(API_URL, { data: deleteData })
-      .then(response => {
-        toast.success('Post Deleted Successfully!!. Reload to get the new updated data.', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored"
+    if(Cookies.get("User") == user || Cookies.get("User") == "Developer"){
+      axios.delete(API_URL, { data: deleteData })
+        .then(response => {
+          toast.success('Post Deleted Successfully!!. Reload to get the new updated data.', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored"
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error.message);
         });
+    }else{
+      toast.error('Only the user who created can delete', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
       })
-      .catch(error => {
-        console.error('Error:', error.message);
-      });
+    }
   };
 
   const handleUpdateClick = () => {
-    setShowUpdateForm(true);
+
+    if(Cookies.get("User") == user || Cookies.get("User") == "Developer"){
+      setShowUpdateForm(true)
+    }
+    else{
+      toast.error('Only the user who created can update!!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored'
+      })
+    }
     // navigate('/update');
     // console.log(user)
     // console.log(title)
